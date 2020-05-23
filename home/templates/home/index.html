@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit score</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    Upload data (.csv)
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="datacsv" accept=".csv">
+        <br>
+        <input type="text" name="iddata" value="datacsv" hidden>
+        <button type="submit">Upload</button>
+    </form>
+    <br>
+    Chuyển nominal -> numeric
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="iddata" value="no_to_num" hidden>
+        <button type="submit">Nominal => Numerical</button>
+    </form>
+    Tải tập dữ liệu sau khi đã chuyển đổi:
+    <a href="/csv/plants.csv">Download</a>
+    <br><br>
+    Xử lý missing value
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="iddata" value="missing_value" hidden>
+        <button type="submit">Xử lý missing value</button>
+    </form>
+    Tải tập dữ liệu sau khi đã xử lý:
+    <a href="/csv/plants.csv">Download</a>
+    <br><br>
+    Rút trích đặc trưng
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="iddata" value="extract_feature" hidden>
+        <button type="submit">Rút trích đặc trưng</button>
+    </form>
+    Tải tập dữ liệu sau khi đã rút trích đặc trưng:
+    <a href="/csv/plants.csv">Download</a>
+    <br><br>
+    Training
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="iddata" value="training" hidden>
+        <button type="submit">Training</button>
+    </form>
+    Tải tập tham số sau khi training:
+    <a href="/csv/plants.csv">Download</a>
+    <br><br>
+    Phân lớp cho một mẫu 
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="iddata" value="data_pattern" hidden>
+        1 mẫu dữ liệu bao gồm các thuộc tính được nhập từ bàn phím theo cấu trúc sau:    
+        'province', 'district', 'age_source1', 'age_source2', 'maCv', 'FIELD_1', 'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
+        <br>
+        <input type="text" name="data_pattern">
+        <button type="submit">Submit</button>
+    </form>
+    Kết quả: abc xyz
+    <br><br>
+    Phân lớp cho nhiều mẫu 
+    Phân lớp cho một mẫu 
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="iddata" value="data_patterns" hidden>
+        Tập tin .csv chứa các mẫu dữ liệu, mỗi dòng một mẫu với các thuộc tính sắp xếp theo cấu trúc sau:    
+        'province', 'district', 'age_source1', 'age_source2', 'maCv', 'FIELD_1', 'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
+        <br>
+        <input type="file" name="testcsv" accept=".csv">
+        <button type="submit">Submit</button>
+    </form>
+    Kết quả: abc xyz
+    <br><br>
+    Kết quả đánh giá theo gini: abc
+    <br>
+    Kết quả đánh giá theo roc_ouc: abc
+    <br>
+    Visualization
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
