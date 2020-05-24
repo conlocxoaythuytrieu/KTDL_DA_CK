@@ -11,19 +11,34 @@ def index(request):
             fs.delete("dataset.csv")
             fs.save("dataset.csv", upload_data)
         if (request.POST.get("iddata") == "no_to_num"):
-            print(request.POST.get("iddata"))
+            no_to_num()
         if (request.POST.get("iddata") == "missing_value"):
-            print(request.POST.get("iddata"))
+            missing_value()
         if (request.POST.get("iddata") == "extract_feature"):
-            print(request.POST.get("iddata"))
+            extract_feature()
         if (request.POST.get("iddata") == "training"):
-            print(request.POST.get("iddata"))
+            training()
         if (request.POST.get("iddata") == "data_pattern"):
-            print(request.POST.get("iddata"))
+            data_pattern()
         if (request.POST.get("iddata") == "data_patterns"):
-            print(request.POST.get("iddata"))
-            test_data = request.FILES['testcsv']
-            fs = FileSystemStorage()
-            fs.delete("testset.csv")
-            fs.save("testset.csv", upload_data)
-    return render(request, 'home/index.html')
+            data_patterns()
+    return render(request, 'home/index.html', {'iddata': request.POST.get("iddata")})
+
+def no_to_num():
+    print(1)
+def missing_value():
+    print(2)
+def extract_feature():
+    print(3)
+def training():
+    print(4)
+def data_pattern():
+    print(5)
+def data_patterns():
+    test_data = request.FILES['testcsv']
+    fs = FileSystemStorage()
+    fs.delete("testset.csv")
+    fs.save("testset.csv", test_data)
+
+def visualization(request):
+    return render(request, 'home/visualization.html')

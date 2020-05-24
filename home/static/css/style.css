@@ -3,16 +3,9 @@
         sans-serif;
 }
 
-html,
-body,
-header {
-    height: 130%;
-    margin: 0;
-}
-
-.bg {
-    height: 100%;
-    background: linear-gradient(135deg, rgba(64, 155, 227, 0.9443978274903712) 5%, rgba(74, 40, 138, 0.9528011888349089) 90%);
+body{
+    background: linear-gradient(135deg, rgba(64, 155, 227, 0.9443978274903712) 5%, rgba(74, 40, 138, 0.9528011888349089) 90%) no-repeat fixed;
+    background-color: transparent !important ;
 }
 
 /* 
