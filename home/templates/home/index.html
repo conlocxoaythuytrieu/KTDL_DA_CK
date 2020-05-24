@@ -1,90 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Credit score</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    Upload data (.csv)
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="datacsv" accept=".csv">
-        <br>
-        <input type="text" name="iddata" value="datacsv" hidden>
-        <button type="submit">Upload</button>
-    </form>
-    <br>
-    Chuyển nominal -> numeric
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="iddata" value="no_to_num" hidden>
-        <button type="submit">Nominal => Numerical</button>
-    </form>
-    Tải tập dữ liệu sau khi đã chuyển đổi:
-    <a href="/csv/plants.csv">Download</a>
-    <br><br>
-    Xử lý missing value
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="iddata" value="missing_value" hidden>
-        <button type="submit">Xử lý missing value</button>
-    </form>
-    Tải tập dữ liệu sau khi đã xử lý:
-    <a href="/csv/plants.csv">Download</a>
-    <br><br>
-    Rút trích đặc trưng
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="iddata" value="extract_feature" hidden>
-        <button type="submit">Rút trích đặc trưng</button>
-    </form>
-    Tải tập dữ liệu sau khi đã rút trích đặc trưng:
-    <a href="/csv/plants.csv">Download</a>
-    <br><br>
-    Training
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="iddata" value="training" hidden>
-        <button type="submit">Training</button>
-    </form>
-    Tải tập tham số sau khi training:
-    <a href="/csv/plants.csv">Download</a>
-    <br><br>
-    Phân lớp cho một mẫu 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="iddata" value="data_pattern" hidden>
-        1 mẫu dữ liệu bao gồm các thuộc tính được nhập từ bàn phím theo cấu trúc sau:    
-        'province', 'district', 'age_source1', 'age_source2', 'maCv', 'FIELD_1', 'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
-        <br>
-        <input type="text" name="data_pattern">
-        <button type="submit">Submit</button>
-    </form>
-    Kết quả: abc xyz
-    <br><br>
-    Phân lớp cho nhiều mẫu 
-    Phân lớp cho một mẫu 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="iddata" value="data_patterns" hidden>
-        Tập tin .csv chứa các mẫu dữ liệu, mỗi dòng một mẫu với các thuộc tính sắp xếp theo cấu trúc sau:    
-        'province', 'district', 'age_source1', 'age_source2', 'maCv', 'FIELD_1', 'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
-        <br>
-        <input type="file" name="testcsv" accept=".csv">
-        <button type="submit">Submit</button>
-    </form>
-    Kết quả: abc xyz
-    <br><br>
-    Kết quả đánh giá theo gini: abc
-    <br>
-    Kết quả đánh giá theo roc_ouc: abc
-    <br>
-    Visualization
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <div class="bg">
+        <!-- Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col col-sm col-md col-lg col-xl mt-5">
+
+                    <div class="card shadow z-depth-4">
+                        <!--Form-->
+                        <div class="card-body">
+                            <div class="container">
+
+                                <div class="card-title">
+                                    <h3 class="white-text">Uploader</h3>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div class="input-group mb-4">
+                                            <form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <div class="custom-file mb-2">
+                                                    <input type="file" class="custom-file-input mb-2"
+                                                        id="inputGroupFile01" name="iddata" accept=".csv">
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file
+                                                        (.csv)</label>
+                                                </div>
+
+                                                <button class="btn btn-primary btn-block" type="submit">Upload</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div class="input-group mb-4">
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <label for="convert">Chuyển nominal sang numeric:</label>
+                                                <input type="text" name="iddata" value="no_to_num" hidden id="convert">
+                                                <div>
+                                                    <button class="btn btn-primary btn-block"
+                                                        type="submit">Convert</button>
+                                                    <a class="btn btn-primary btn-block" role="button"
+                                                        href="/csv/plants.csv">Result File</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div class="input-group mb-4">
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <label for="missing-value">Xử lý missing value:</label>
+                                                <input type="text" name="iddata" value="missing_value" hidden
+                                                    id="missing-value">
+                                                <div>
+                                                    <button class="btn btn-primary btn-block" type="submit">Handle
+                                                        Missing Data</button>
+                                                    <a class="btn btn-primary btn-block" role="button"
+                                                        href="/csv/plants.csv">Result File</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div class="input-group mb-4">
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <label for="feature-selectselect">Rút trích đặc trưng:</label>
+                                                <input type="text" name="iddata" value="extract_feature" hidden
+                                                    id="feature-selectselect">
+                                                <div>
+                                                    <button class="btn btn-primary btn-block" type="submit">Features
+                                                        Selection</button>
+                                                    <a class="btn btn-primary btn-block" role="button"
+                                                        href="/csv/plants.csv">Result
+                                                        File</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div class="input-group mb-4">
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <label for="train-model">Train model:</label>
+                                                <input type="text" name="iddata" value="training" hidden
+                                                    id="train-model">
+                                                <div>
+                                                    <button class="btn btn-primary btn-block"
+                                                        type="submit">Training</button>
+                                                    <a class="btn btn-primary btn-block" role="button"
+                                                        href="/csv/plants.csv">Weight
+                                                        File</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div>
+                                            <p>
+                                                Phân lớp cho một mẫu:
+                                            </p>
+                                            <p>
+                                                1 mẫu dữ liệu bao gồm các thuộc tính được nhập từ bàn phím theo cấu
+                                                trúc sau:
+                                                'province', 'district', 'age_source1', 'age_source2', 'maCv','FIELD_1',
+                                                'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
+                                            </p>
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input type="text" class="form-control mb-2" name="data_pattern"
+                                                    placeholder="Data Pattern">
+                                                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                            </form>
+                                        </div>
+                                        <div>
+                                            Kết quả: abc xyz
+                                        </div>
+
+                                    </div>
+                                    <div class="col col-sm col-md col-lg col-xl">
+                                        <div>
+                                            <p>
+                                                Phân lớp cho nhiều mẫu:
+                                            </p>
+                                            <p>
+                                                Tập tin .csv chứa các mẫu dữ liệu, mỗi dòng một mẫu với các thuộc tính
+                                                sắp xếp theo cấu trúc sau: 'province', 'district', 'age_source1',
+                                                'age_source2', 'maCv', 'FIELD_1', 'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
+                                            </p>
+                                        </div>
+
+                                        <div class="input-group mb-4">
+
+                                            <form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <div class="custom-file mb-2">
+                                                    <input type="file" class="custom-file-input" id="inputGroupFile02"
+                                                        name="data_patterns" accept=".csv">
+                                                    <label class="custom-file-label" for="inputGroupFile02">Choose file
+                                                        (.csv)</label>
+                                                    <input class="btn btn-primary" type="text" value="datacsv" hidden>
+                                                </div>
+
+                                                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                            </form>
+                                        </div>
+                                        <div>
+                                            Kết quả: abc xyz
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col col-sm col-md col-lg col-xl">Kết quả đánh giá theo gini</div>
+                                    <div class="col col-sm col-md col-lg col-xl">Kết quả đánh giá theo roc_ouc</div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--/.Form-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Content -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+
 </body>
+
 </html>

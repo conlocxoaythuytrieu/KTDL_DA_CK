@@ -1,0 +1,85 @@
+html,
+body,
+header {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    height: 100%;
+    background: linear-gradient(135deg, rgba(64, 155, 227, 0.9443978274903712), rgba(74, 40, 138, 0.9528011888349089));
+}
+
+/* 
+@media (max-width: 740px) {
+
+    html,
+    body,
+    header,
+    .bg {
+        height: 1000px;
+    }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+
+    html,
+    body,
+    header,
+    .bg {
+        height: 650px;
+    }
+} */
+
+
+.card {
+    background-color: rgba(252, 252, 252, 1);
+    border-style: none;
+    border-radius: 25px;
+    /* box-shadow: 4px 4px 10px rgba(48, 48, 48, 0.5), -4px -4px 10px rgba(219, 218, 218, 0.5); */
+}
+
+.card-body {
+    margin: 5%;
+}
+
+.card-title {
+    margin-bottom: 5%;
+}
+
+#upload-form {
+    padding-top: 10px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: rgba(64, 154, 227, 0.8);
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.dropdown-toggle.btn-primary {
+    background: rgba(64, 154, 227, 0.8);
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background: rgba(64, 154, 227, 0.8);
+    box-shadow: none;
+}
