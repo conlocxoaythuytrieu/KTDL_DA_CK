@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +18,7 @@
         <!-- Content -->
         <div class="container">
             <div class="row">
-                <div class="col col-sm col-md col-lg col-xl mt-5">
+                <div class="col-4 col-sm col-md col-lg col-xl mt-5">
 
                     <div class="card shadow z-depth-4">
                         <!--Form-->
@@ -25,104 +26,135 @@
                             <div class="container">
 
                                 <div class="card-title">
-                                    <h3 class="white-text">Uploader</h3>
+                                    <h1 class="text-center font-weight-bold">
+                                        Uploader
+                                    </h1>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col col-sm col-md col-lg col-xl">
-                                        <div class="input-group mb-4">
+                                <div class="row mt-5">
+                                    <div class="col-4 col-sm col-md col-lg col-xl">
+                                        <div class="mb-4">
                                             <form method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <div class="custom-file mb-2">
                                                     <input type="file" class="custom-file-input mb-2"
                                                         id="inputGroupFile01" name="iddata" accept=".csv">
-                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file
-                                                        (.csv)</label>
+                                                    <label class="custom-file-label" for="inputGroupFile01">
+                                                        Choose file (.csv)
+                                                    </label>
                                                 </div>
 
-                                                <button class="btn btn-primary btn-block" type="submit">Upload</button>
+                                                <button class="btn btn-primary btn-block gradient" type="submit">
+                                                    Upload
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col col-sm col-md col-lg col-xl">
-                                        <div class="input-group mb-4">
+                                <div class="row mt-5">
+                                    <div class="col-6 col-sm col-md col-lg col-xl pr-5 text-center">
+                                        <div class="mb-4 ">
                                             <form action="" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
-                                                <label for="convert">Chuyển nominal sang numeric:</label>
+                                                <label for="convert">
+                                                    <h5>
+                                                        Chuyển nominal sang numeric:
+                                                    </h5>
+                                                </label>
                                                 <input type="text" name="iddata" value="no_to_num" hidden id="convert">
                                                 <div>
-                                                    <button class="btn btn-primary btn-block"
-                                                        type="submit">Convert</button>
-                                                    <a class="btn btn-primary btn-block" role="button"
-                                                        href="/csv/plants.csv">Result File</a>
+                                                    <button class="btn btn-primary btn-block gradient" type="submit">
+                                                        Convert
+                                                    </button>
+                                                    <a class="btn btn-primary btn-block gradient" role="button"
+                                                        href="/csv/plants.csv">
+                                                        Result File
+                                                    </a>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="col col-sm col-md col-lg col-xl">
-                                        <div class="input-group mb-4">
+                                    <div class="col-6 col-sm col-md col-lg col-xl pl-5 text-center">
+                                        <div class="mb-4 ">
                                             <form action="" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
-                                                <label for="missing-value">Xử lý missing value:</label>
+                                                <label for="missing-value">
+                                                    <h5>
+                                                        Xử lý missing value:
+                                                    </h5>
+                                                </label>
                                                 <input type="text" name="iddata" value="missing_value" hidden
                                                     id="missing-value">
                                                 <div>
-                                                    <button class="btn btn-primary btn-block" type="submit">Handle
-                                                        Missing Data</button>
-                                                    <a class="btn btn-primary btn-block" role="button"
-                                                        href="/csv/plants.csv">Result File</a>
+                                                    <button class="btn btn-primary btn-block gradient" type="submit">
+                                                        Handle Missing Data
+                                                    </button>
+                                                    <a class="btn btn-primary btn-block gradient" role="button"
+                                                        href="/csv/plants.csv">
+                                                        Result File
+                                                    </a>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col col-sm col-md col-lg col-xl">
-                                        <div class="input-group mb-4">
+                                <div class="row mt-5">
+                                    <div class="col-6 col-sm col-md col-lg col-xl pr-5 text-center">
+                                        <div class="mb-4 ">
                                             <form action="" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
-                                                <label for="feature-selectselect">Rút trích đặc trưng:</label>
+                                                <label for="feature-selectselect">
+                                                    <h5>
+                                                        Rút trích đặc trưng:
+                                                    </h5>
+                                                </label>
                                                 <input type="text" name="iddata" value="extract_feature" hidden
                                                     id="feature-selectselect">
                                                 <div>
-                                                    <button class="btn btn-primary btn-block" type="submit">Features
-                                                        Selection</button>
-                                                    <a class="btn btn-primary btn-block" role="button"
-                                                        href="/csv/plants.csv">Result
-                                                        File</a>
+                                                    <button class="btn btn-primary btn-block gradient" type="submit">
+                                                        Features Selection
+                                                    </button>
+                                                    <a class="btn btn-primary btn-block gradient" role="button"
+                                                        href="/csv/plants.csv">
+                                                        Result File
+                                                    </a>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
-                                    <div class="col col-sm col-md col-lg col-xl">
-                                        <div class="input-group mb-4">
+                                    <div class="col-6 col-sm col-md col-lg col-xl pl-5 text-center">
+                                        <div class="mb-4 ">
                                             <form action="" method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
-                                                <label for="train-model">Train model:</label>
+                                                <label for="train-model">
+                                                    <h5>
+                                                        Train model:
+                                                    </h5>
+                                                </label>
                                                 <input type="text" name="iddata" value="training" hidden
                                                     id="train-model">
                                                 <div>
-                                                    <button class="btn btn-primary btn-block"
-                                                        type="submit">Training</button>
-                                                    <a class="btn btn-primary btn-block" role="button"
-                                                        href="/csv/plants.csv">Weight
-                                                        File</a>
+                                                    <button class="btn btn-primary btn-block gradient" type="submit">
+                                                        Training
+                                                    </button>
+                                                    <a class="btn btn-primary btn-block gradient" role="button"
+                                                        href="/csv/plants.csv">
+                                                        Weight File
+                                                    </a>
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col col-sm col-md col-lg col-xl">
+                                <div class="row mt-5">
+                                    <div class="col-6 col-sm col-md col-lg col-xl text-justify">
                                         <div>
-                                            <p>
+                                            <h5 class="text-center">
                                                 Phân lớp cho một mẫu:
-                                            </p>
+                                            </h5>
                                             <p>
                                                 1 mẫu dữ liệu bao gồm các thuộc tính được nhập từ bàn phím theo cấu
                                                 trúc sau:
@@ -130,12 +162,13 @@
                                                 'FIELD_2', ..., 'FIELD_56', 'FIELD_57'
                                             </p>
                                         </div>
-                                        <div class="input-group mb-4">
+                                        <div class=" mb-4">
                                             <form method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <input type="text" class="form-control mb-2" name="data_pattern"
                                                     placeholder="Data Pattern">
-                                                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                                <button class="btn btn-primary btn-block gradient"
+                                                    type="submit">Submit</button>
                                             </form>
                                         </div>
                                         <div>
@@ -143,11 +176,14 @@
                                         </div>
 
                                     </div>
-                                    <div class="col col-sm col-md col-lg col-xl">
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-6 col-sm col-md col-lg col-xl  text-justify">
                                         <div>
-                                            <p>
+                                            <h5 class="text-center">
                                                 Phân lớp cho nhiều mẫu:
-                                            </p>
+                                            </h5>
                                             <p>
                                                 Tập tin .csv chứa các mẫu dữ liệu, mỗi dòng một mẫu với các thuộc tính
                                                 sắp xếp theo cấu trúc sau: 'province', 'district', 'age_source1',
@@ -155,7 +191,7 @@
                                             </p>
                                         </div>
 
-                                        <div class="input-group mb-4">
+                                        <div class=" mb-4">
 
                                             <form method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
@@ -167,7 +203,8 @@
                                                     <input class="btn btn-primary" type="text" value="datacsv" hidden>
                                                 </div>
 
-                                                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                                <button class="btn btn-primary btn-block gradient" type="submit"> Submit
+                                                </button>
                                             </form>
                                         </div>
                                         <div>
@@ -176,9 +213,19 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col col-sm col-md col-lg col-xl">Kết quả đánh giá theo gini</div>
-                                    <div class="col col-sm col-md col-lg col-xl">Kết quả đánh giá theo roc_ouc</div>
+                                <div class="row mt-5">
+                                    <div class="col-4 col-sm col-md col-lg col-xl pr-5 text-center">
+                                        <h5>
+                                            Kết quả đánh giá
+                                            theo gini
+                                        </h5>
+                                    </div>
+                                    <div class="col-4 col-sm col-md col-lg col-xl pl-5 text-center">
+                                        <h5>
+                                            Kết quả đánh giá
+                                            theo roc_ouc
+                                        </h5>
+                                    </div>
                                 </div>
 
                             </div>
