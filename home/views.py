@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
-
+from .process import *
 # Create your views here.
 def index(request):
     if (request.method == "POST"):
@@ -11,13 +11,13 @@ def index(request):
             fs.delete("dataset.csv")
             fs.save("dataset.csv", upload_data)
         if (request.POST.get("iddata") == "no_to_num"):
-            print(request.POST.get("iddata"))
+            non_to_num()
         if (request.POST.get("iddata") == "missing_value"):
-            print(request.POST.get("iddata"))
+            deadling_missing_value()
         if (request.POST.get("iddata") == "extract_feature"):
             print(request.POST.get("iddata"))
         if (request.POST.get("iddata") == "training"):
-            print(request.POST.get("iddata"))
+            training()
         if (request.POST.get("iddata") == "data_pattern"):
             print(request.POST.get("iddata"))
         if (request.POST.get("iddata") == "data_patterns"):
