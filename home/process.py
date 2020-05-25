@@ -54,7 +54,10 @@ def non_to_num():
     train = train.join(target_enc.transform(train[cat_features]).add_suffix('_process'))
     test = test.join(target_enc.transform(test[cat_features]).add_suffix('_process'))
 
-    test = test.drop(columns = cat_features_remove)
+    if 'id' in test.columns:
+        test = test.drop(columns = cat_features_remove)
+    else:
+        test = test.drop(columns = cat_features)
     train = train.drop(columns = cat_features_remove)
 
     
@@ -89,8 +92,7 @@ def deadling_missing_value():
    
     train = pd.read_csv('./preprocess/numerical_train.csv',index_col=0)
     test =  pd.read_csv('./preprocess/numerical_test.csv',index_col=0)
-    print(test.head())
-    
+   
     my_imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
 
     train_label = pd.DataFrame({'ID':train['label']})
@@ -125,5 +127,30 @@ def training():
         var_env.knn_pickle = pipeline.fit(train.values,train_label)        
         
     result = pd.DataFrame({'predict_label':var_env.knn_pickle.predict(test)})
-    result.to_csv('./result.csv',index=False)
+    result.to_csv('./result/result.csv',index=False)
+    return True
+
+def data_pattern_tocsv(data):
+    columns = ['province', 'district', 'age_source1', 'age_source2', 'maCv',
+       'FIELD_1', 'FIELD_2', 'FIELD_3', 'FIELD_4', 'FIELD_5', 'FIELD_6',
+       'FIELD_7', 'FIELD_8', 'FIELD_9', 'FIELD_10', 'FIELD_11', 'FIELD_12',
+       'FIELD_13', 'FIELD_14', 'FIELD_15', 'FIELD_16', 'FIELD_17', 'FIELD_18',
+       'FIELD_19', 'FIELD_20', 'FIELD_21', 'FIELD_22', 'FIELD_23', 'FIELD_24',
+       'FIELD_25', 'FIELD_26', 'FIELD_27', 'FIELD_28', 'FIELD_29', 'FIELD_30',
+       'FIELD_31', 'FIELD_32', 'FIELD_33', 'FIELD_34', 'FIELD_35', 'FIELD_36',
+       'FIELD_37', 'FIELD_38', 'FIELD_39', 'FIELD_40', 'FIELD_41', 'FIELD_42',
+       'FIELD_43', 'FIELD_44', 'FIELD_45', 'FIELD_46', 'FIELD_47', 'FIELD_48',
+       'FIELD_49', 'FIELD_50', 'FIELD_51', 'FIELD_52', 'FIELD_53', 'FIELD_54',
+       'FIELD_55', 'FIELD_56', 'FIELD_57']
+
+    data = data.split(',')
+  
+    d = {}
+    for idx in range(len(columns)):
+        d[columns[idx]]=[data[idx]]
+    data = pd.DataFrame(data=d)
+    data.to_csv('./csv/dataset.csv',index=0)
+    non_to_num()
+    deadling_missing_value()
+    training()
     return True

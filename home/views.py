@@ -11,27 +11,25 @@ def index(request):
             fs.delete("dataset.csv")
             fs.save("dataset.csv", upload_data)
         if (request.POST.get("iddata") == "no_to_num"):
-            no_to_num()
+            print(22)
+            non_to_num()
         if (request.POST.get("iddata") == "missing_value"):
-            missing_value()
+            deadling_missing_value()
         if (request.POST.get("iddata") == "extract_feature"):
             extract_feature()
         if (request.POST.get("iddata") == "training"):
             training()
         if (request.POST.get("iddata") == "data_pattern"):
-            data_pattern()
+            data_pattern_tocsv(request.POST.get("data_pattern"))
         if (request.POST.get("iddata") == "data_patterns"):
+           
             data_patterns()
     return render(request, 'home/index.html', {'iddata': request.POST.get("iddata")})
 
-def no_to_num():
-    print(1)
-def missing_value():
-    print(2)
+
 def extract_feature():
     print(3)
-def training():
-    print(4)
+
 def data_pattern():
     print(5)
 def data_patterns():
