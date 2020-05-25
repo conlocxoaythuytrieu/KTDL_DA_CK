@@ -20,10 +20,12 @@ def index(request):
         if (request.POST.get("iddata") == "training"):
             training()
         if (request.POST.get("iddata") == "data_pattern"):
-            train_data_pattern(request.POST.get("data_pattern"))
+            result = train_data_pattern(request.POST.get("data_pattern"))
+            print(result)
         if (request.POST.get("iddata") == "data_patterns"):
             data_patterns(request)
-            train_data_patterns()
+            result = train_data_patterns()
+            print(result)
     return render(request, 'home/index.html', {'iddata': request.POST.get("iddata")})
 
 

@@ -35,9 +35,13 @@ from sklearn.neighbors import KNeighborsClassifier
 from ast import literal_eval
 import pickle
 from . import var_env
-def non_to_num():
-    train = pd.read_csv('./base/train.csv',low_memory=False)
-    test  = pd.read_csv('./csv/testset.csv',low_memory=False)
+from sklearn.preprocessing import StandardScaler
+def non_to_num(option=None):
+    train = pd.read_csv('./csv/base/train.csv',low_memory=False)
+    if option == 2:
+        test  = pd.read_csv('./csv/testset.csv',low_memory=False)
+    else:
+        test  = pd.read_csv('./csv/dataset.csv',low_memory=False)
 
     cat_features = ['province','district','maCv', 'FIELD_8', 'FIELD_9','FIELD_10','FIELD_12','FIELD_13','FIELD_17','FIELD_18',
                 'FIELD_19','FIELD_20','FIELD_22','FIELD_23','FIELD_24','FIELD_25','FIELD_26','FIELD_27',
@@ -70,8 +74,8 @@ def non_to_num():
 
     train = train.replace(to_replace = 'None', value = np.nan) 
     test = test.replace(to_replace = 'None', value = np.nan)
-    test.to_csv('./preprocess/numerical_test.csv')
-    train.to_csv('./preprocess/numerical_train.csv')
+    test.to_csv('./csv/preprocess/numerical_test.csv')
+    train.to_csv('./csv/preprocess/numerical_train.csv')
     return True
 
 def detection_outlier(df,cols):
@@ -90,8 +94,8 @@ def detection_outlier(df,cols):
 
 def deadling_missing_value():
    
-    train = pd.read_csv('./preprocess/numerical_train.csv',index_col=0)
-    test =  pd.read_csv('./preprocess/numerical_test.csv',index_col=0)
+    train = pd.read_csv('./csv/preprocess/numerical_train.csv',index_col=0)
+    test =  pd.read_csv('./csv/preprocess/numerical_test.csv',index_col=0)
    
     my_imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
 
@@ -107,18 +111,20 @@ def deadling_missing_value():
    
     train = train.drop(index_outlier_data, axis = 0).reset_index(drop=True)
     train_label = train_label.drop(index_outlier_data, axis = 0).reset_index(drop=True)
-   
-    test.to_csv('./preprocess/missing_test.csv')
-    train.to_csv('./preprocess/missing_train.csv')
-    train_label.to_csv('./base/train_label.csv')
+    scaler = StandardScaler()
+    scaler.fit(train)
+    train = pd.DataFrame(scaler.transform(train),columns = train.columns)
+    test =  pd.DataFrame(scaler.transform(test),columns = test.columns) 
+    test.to_csv('./csv/preprocess/missing_test.csv')
+    train.to_csv('./csv/preprocess/missing_train.csv')
+    train_label.to_csv('./csv/base/train_label.csv')
     return True
 
 def training():
-    test = pd.read_csv('./preprocess/missing_test.csv',index_col=0)
-    train =  pd.read_csv('./preprocess/missing_train.csv',index_col=0)  
-    train_label =  pd.read_csv('./base/train_label.csv',index_col=0)   
-    print(train.head())
-    print(test.head())
+    test = pd.read_csv('./csv/preprocess/missing_test.csv',index_col=0)
+    train =  pd.read_csv('./csv/preprocess/missing_train.csv',index_col=0)  
+    
+    train_label =  pd.read_csv('./csv/base/train_label.csv',index_col=0)   
     if var_env.knn_pickle == None:
         clf = KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
                         metric_params=None, n_jobs=None, n_neighbors=5, p=2,
@@ -127,7 +133,7 @@ def training():
         var_env.knn_pickle = pipeline.fit(train.values,train_label)        
         
     result = pd.DataFrame({'predict_label':var_env.knn_pickle.predict(test)})
-    result.to_csv('./result/result.csv',index=False)
+    result.to_csv('./csv/result.csv',index=False)
     return True
 
 def train_data_pattern(data):
@@ -153,10 +159,12 @@ def train_data_pattern(data):
     non_to_num()
     deadling_missing_value()
     training()
-    return True
+    result  = pd.read_csv('./csv/result.csv')
+    return result
     
 def train_data_patterns():
-    non_to_num()
+    non_to_num(2)
     deadling_missing_value()
     training()
-    return True
+    result  = pd.read_csv('./csv/result.csv')
+    return result
