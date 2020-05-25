@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from .process import *
+from .training import *
 # Create your views here.
 def index(request):
     if (request.method == "POST"):
@@ -11,28 +12,23 @@ def index(request):
             fs.delete("dataset.csv")
             fs.save("dataset.csv", upload_data)
         if (request.POST.get("iddata") == "no_to_num"):
-            print(22)
-            non_to_num()
+            dataset_numerical_train()
         if (request.POST.get("iddata") == "missing_value"):
-            deadling_missing_value()
+            deadling_missing_value_train()
         if (request.POST.get("iddata") == "extract_feature"):
-            extract_feature()
+            feture_extraction()
         if (request.POST.get("iddata") == "training"):
             training()
         if (request.POST.get("iddata") == "data_pattern"):
-            data_pattern_tocsv(request.POST.get("data_pattern"))
+            train_data_pattern(request.POST.get("data_pattern"))
         if (request.POST.get("iddata") == "data_patterns"):
-           
-            data_patterns()
+            data_patterns(request)
+            train_data_patterns()
     return render(request, 'home/index.html', {'iddata': request.POST.get("iddata")})
 
 
-def extract_feature():
-    print(3)
 
-def data_pattern():
-    print(5)
-def data_patterns():
+def data_patterns(request):
     test_data = request.FILES['testcsv']
     fs = FileSystemStorage()
     fs.delete("testset.csv")

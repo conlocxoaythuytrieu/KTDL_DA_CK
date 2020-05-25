@@ -37,7 +37,7 @@ import pickle
 from . import var_env
 def non_to_num():
     train = pd.read_csv('./base/train.csv',low_memory=False)
-    test  = pd.read_csv('./csv/dataset.csv',low_memory=False)
+    test  = pd.read_csv('./csv/testset.csv',low_memory=False)
 
     cat_features = ['province','district','maCv', 'FIELD_8', 'FIELD_9','FIELD_10','FIELD_12','FIELD_13','FIELD_17','FIELD_18',
                 'FIELD_19','FIELD_20','FIELD_22','FIELD_23','FIELD_24','FIELD_25','FIELD_26','FIELD_27',
@@ -130,7 +130,7 @@ def training():
     result.to_csv('./result/result.csv',index=False)
     return True
 
-def data_pattern_tocsv(data):
+def train_data_pattern(data):
     columns = ['province', 'district', 'age_source1', 'age_source2', 'maCv',
        'FIELD_1', 'FIELD_2', 'FIELD_3', 'FIELD_4', 'FIELD_5', 'FIELD_6',
        'FIELD_7', 'FIELD_8', 'FIELD_9', 'FIELD_10', 'FIELD_11', 'FIELD_12',
@@ -150,6 +150,12 @@ def data_pattern_tocsv(data):
         d[columns[idx]]=[data[idx]]
     data = pd.DataFrame(data=d)
     data.to_csv('./csv/dataset.csv',index=0)
+    non_to_num()
+    deadling_missing_value()
+    training()
+    return True
+    
+def train_data_patterns():
     non_to_num()
     deadling_missing_value()
     training()
