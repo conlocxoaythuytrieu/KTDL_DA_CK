@@ -38,7 +38,8 @@
                                                 {% csrf_token %}
                                                 <div class="custom-file mb-2">
                                                     <input type="file" class="custom-file-input mb-2"
-                                                        id="inputGroupFile01" name="iddata" accept=".csv">
+                                                        id="inputGroupFile01" name="datacsv" accept=".csv">
+                                                    <input type="text" name="iddata" value="datacsv" hidden>
                                                     <label class="custom-file-label" for="inputGroupFile01">
                                                         Choose file (.csv)
                                                     </label>
