@@ -59,7 +59,7 @@
                                                 {% csrf_token %}
                                                 <label for="convert">
                                                     <h5>
-                                                        Chuyển nominal sang numeric:
+                                                        <b>Chuyển nominal sang numeric:</b> 
                                                     </h5>
                                                 </label>
                                                 <input type="text" name="iddata" value="no_to_num" hidden id="convert">
@@ -82,7 +82,7 @@
                                                 {% csrf_token %}
                                                 <label for="missing-value">
                                                     <h5>
-                                                        Xử lý missing value:
+                                                        <b>Xử lý missing value:</b> 
                                                     </h5>
                                                 </label>
                                                 <input type="text" name="iddata" value="missing_value" hidden
@@ -109,7 +109,7 @@
                                                 {% csrf_token %}
                                                 <label for="feature-selectselect">
                                                     <h5>
-                                                        Rút trích đặc trưng:
+                                                        <b>Rút trích đặc trưng:</b> 
                                                     </h5>
                                                 </label>
                                                 <input type="text" name="iddata" value="extract_feature" hidden
@@ -133,7 +133,7 @@
                                                 {% csrf_token %}
                                                 <label for="train-model">
                                                     <h5>
-                                                        Train model:
+                                                        <b>Train model:</b> 
                                                     </h5>
                                                 </label>
                                                 <input type="text" name="iddata" value="training" hidden
@@ -152,12 +152,12 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <hr>
                                 <div class="row mt-5">
                                     <div class="col-6 col-sm col-md col-lg col-xl text-justify">
                                         <div>
                                             <h5 class="text-center">
-                                                Phân lớp cho một mẫu:
+                                                <b>Phân lớp cho một mẫu:</b> 
                                             </h5>
                                             <p>
                                                 1 mẫu dữ liệu bao gồm các thuộc tính được nhập từ bàn phím theo cấu
@@ -181,12 +181,12 @@
 
                                     </div>
                                 </div>
-
+                                <hr>
                                 <div class="row mt-5">
                                     <div class="col-6 col-sm col-md col-lg col-xl  text-justify">
                                         <div>
                                             <h5 class="text-center">
-                                                Phân lớp cho nhiều mẫu:
+                                                <b>Phân lớp cho nhiều mẫu:</b> 
                                             </h5>
                                             <p>
                                                 Tập tin .csv chứa các mẫu dữ liệu, mỗi dòng một mẫu với các thuộc tính
