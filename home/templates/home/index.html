@@ -170,6 +170,7 @@
                                         <div class=" mb-4">
                                             <form method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
+                                                <input type="text" name="iddata" value="data_pattern" hidden>
                                                 <input type="text" class="form-control mb-2" name="data_pattern"
                                                     placeholder="Data Pattern">
                                                 <button class="shadow btn btn-primary btn-block gradient"
@@ -202,10 +203,10 @@
                                                 {% csrf_token %}
                                                 <div class="custom-file mb-2">
                                                     <input type="file" class="custom-file-input" id="inputGroupFile02"
-                                                        name="data_patterns" accept=".csv">
+                                                        name="testcsv" accept=".csv">
                                                     <label class="custom-file-label" for="inputGroupFile02">Choose file
                                                         (.csv)</label>
-                                                    <input class="btn btn-primary" type="text" value="datacsv" hidden>
+                                                    <input type="text" name="iddata" value="data_patterns" hidden>
                                                 </div>
 
                                                 <button class="shadow btn btn-primary btn-block gradient" type="submit">
