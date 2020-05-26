@@ -70,7 +70,7 @@
                                                         Convert
                                                     </button>
                                                     <a class="btn btn-primary btn-block gradient" role="button"
-                                                        href="/csv/numerical_train.csv">
+                                                        href="/csv/preprocess/numerical_train.csv">
                                                         Result File
                                                     </a>
                                                 </div>
@@ -94,7 +94,7 @@
                                                         Handle Missing Data
                                                     </button>
                                                     <a class="btn btn-primary btn-block gradient" role="button"
-                                                        href="/csv/missing_train.csv">
+                                                        href="/csv/preprocess/missing_train.csv">
                                                         Result File
                                                     </a>
                                                 </div>
@@ -121,7 +121,7 @@
                                                         Features Selection
                                                     </button>
                                                     <a class="btn btn-primary btn-block gradient" role="button"
-                                                        href="/csv/plants.csv">
+                                                        href="/csv/preprocess/feature_extraction.csv">
                                                         Result File
                                                     </a>
                                                 </div>
@@ -145,8 +145,16 @@
                                                         Training
                                                     </button>
                                                     <a class="btn btn-primary btn-block gradient" role="button"
-                                                        href="/csv/plants.csv">
-                                                        Weight File
+                                                        href="/csv/model/KNearest.pkl">
+                                                        Weight File - KNearest
+                                                    </a>
+                                                    <a class="btn btn-primary btn-block gradient" role="button"
+                                                        href="/csv/model/LogisticRegression.pkl">
+                                                        Weight File - LogisticRegression
+                                                    </a>
+                                                    <a class="btn btn-primary btn-block gradient" role="button"
+                                                        href="/csv/model/DecisionTreeClassifier.pkl">
+                                                        Weight File - DecisionTreeClassifier
                                                     </a>
                                                 </div>
                                             </form>
@@ -178,7 +186,7 @@
                                             </form>
                                         </div>
                                         <div>
-                                            Kết quả: abc xyz
+                                            Kết quả: {{ result }}
                                         </div>
 
                                     </div>
@@ -215,26 +223,13 @@
                                             </form>
                                         </div>
                                         <div>
-                                            Kết quả: abc xyz
+                                            <a class="btn btn-primary btn-block gradient" role="button"
+                                                href="/csv/result.csv">
+                                                Result File
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row mt-5">
-                                    <div class="col-4 col-sm col-md col-lg col-xl pr-5 text-center">
-                                        <h5>
-                                            Kết quả đánh giá
-                                            theo gini
-                                        </h5>
-                                    </div>
-                                    <div class="col-4 col-sm col-md col-lg col-xl pl-5 text-center">
-                                        <h5>
-                                            Kết quả đánh giá
-                                            theo roc_auc
-                                        </h5>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                         <!--/.Form-->

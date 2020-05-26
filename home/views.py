@@ -5,6 +5,7 @@ from .process import *
 from .training import *
 # Create your views here.
 def index(request):
+    result = None
     if (request.method == "POST"):
         if (request.POST.get("iddata") == "datacsv"):
             upload_data = request.FILES['datacsv']
@@ -26,7 +27,7 @@ def index(request):
             data_patterns(request)
             result = train_data_patterns()
             print(result)
-    return render(request, 'home/index.html', {'iddata': request.POST.get("iddata")})
+    return render(request, 'home/index.html', {'result': result})
 
 
 
